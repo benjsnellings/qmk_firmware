@@ -5,6 +5,10 @@
 #define _BL 0
 #define _FL 1
 #define _CL 2
+#define _I3 3
+
+#define _ML 8
+#define _LD 9
 
 enum custom_keycodes {
     S_BSKTC = SAFE_RANGE,
@@ -15,7 +19,8 @@ enum custom_keycodes {
     S_ONEUP,
     S_COIN,
     S_SONIC,
-    S_ZELDA
+    S_ZELDA,
+    S_IMPER
 };
 
 #ifdef AUDIO_ENABLE
@@ -28,7 +33,11 @@ enum custom_keycodes {
   float song_one_up[][2]  = SONG(ONE_UP_SOUND);
   float song_sonic_ring[][2]  = SONG(SONIC_RING);
   float song_zelda_puzzle[][2]  = SONG(ZELDA_PUZZLE);
+  float song_imperial_march[][2]  = SONG(IMPERIAL_MARCH);
 #endif
+
+#define i3_mod KC_LGUI
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap _BL: Base Layer (Default Layer)
@@ -38,26 +47,55 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,KC_RBRC,KC_BSLS,                KC_DEL,  \
   MO(_FL),KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,      KC_ENT,                            \
   KC_LSFT,        KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,          KC_RSFT,        KC_UP,           \
-  KC_LCTL,KC_LGUI,KC_LALT,                KC_LGUI,KC_SPC,                         KC_RGUI,KC_RALT,MO(_FL),KC_RCTL,KC_LEFT,KC_DOWN,KC_RGHT),
+  KC_LCTL,KC_LGUI,KC_LALT,             LM(_I3, i3_mod),KC_SPC,                    KC_RGUI,KC_RALT,MO(_FL),KC_RCTL,KC_LEFT,KC_DOWN,KC_RGHT),
 
   /* Keymap _FL: Function Layer
    */
 [_FL] = LAYOUT(
   KC_GRV, KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,      KC_DEL,            KC_PGUP, \
   _______,KC_MPRV,KC_MPLY,KC_MNXT,_______,_______,_______,_______,_______,_______,MO(_CL),_______,_______,KC_MUTE,                KC_PGDN, \
-  MO(_FL),_______,KC_VOLU,KC_VOLD,KC_MUTE,_______,_______,_______,_______,_______,_______,_______,    _______,                             \
+  MO(_FL),_______,KC_VOLU,KC_VOLD,KC_MUTE,_______,KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,_______,    _______,                             \
   _______,        _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,        KC_PGUP,         \
   _______,_______,_______,                _______,_______,                        _______,_______,MO(_FL),_______,KC_HOME,KC_PGDN,KC_END),
 
   /* Keymap _CL: Control layer
    */
 [_CL] = LAYOUT(
-  BL_STEP,S_ONEUP,S_SCALE,RGB_M_R,RGB_M_SW,RGB_M_SN,RGB_M_K,RGB_M_X,RGB_M_G,_______,_______,_______,_______,   BL_TOGG,           BL_INC, \
-  _______,_______,_______,_______,RESET,  _______,_______,_______,_______,_______,MO(_CL),_______,_______,_______,                BL_DEC, \
-  MO(_FL),_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,    _______,                             \
-  _______,        _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,        RGB_SAI,         \
-  _______,_______,_______,                BL_BRTG,BL_BRTG,                        _______,_______,MO(_FL),_______,RGB_HUD,RGB_SAD,RGB_HUI),
+  _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,   _______,            _______, \
+  _______,_______,_______,_______,RESET,  _______,_______,_______,_______,_______,MO(_CL),_______,_______,_______,               _______, \
+  MO(_FL),_______,_______,_______,_______,_______,_______,_______,_______,TG(_LD),_______,_______,    _______,                            \
+  _______,        _______,_______,_______,_______,_______,_______,TG(_ML),_______,_______,_______,        _______,        _______,        \
+  _______,_______,_______,                _______,_______,                        _______,_______,MO(_FL),_______,_______,_______,_______),
+
+
+  /* Keymap _I3:  i3 command layer
+   */
+[_I3] = LAYOUT(
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   XXXXXXX,             XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,    XXXXXXX,                             \
+  XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,        XXXXXXX,         \
+  XXXXXXX,XXXXXXX,XXXXXXX,                XXXXXXX,XXXXXXX,                        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX),
+
+  /* Keymap _ML: Music layer
+   */
+[_ML] = LAYOUT(
+  XXXXXXX,S_BSKTC,S_ODEJY,S_RCKBY,S_DOEDR,S_SCALE,S_ONEUP, S_COIN,S_SONIC,S_ZELDA,S_IMPER,XXXXXXX,XXXXXXX,   XXXXXXX,             XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,    XXXXXXX,                             \
+  XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,        XXXXXXX,         \
+  XXXXXXX,XXXXXXX,XXXXXXX,                XXXXXXX,XXXXXXX,                        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX),
+
+  /* Keymap _LD:  LED control layer
+   */
+[_LD] = LAYOUT(
+  RGB_M_P,RGB_M_B,RGB_M_R,RGB_M_K,RGB_M_X,RGB_M_G,RGB_M_T,RGB_M_SW,RGB_M_SN,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   BL_TOGG,             XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,    XXXXXXX,                             \
+  XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,        RGB_SAI,         \
+  XXXXXXX,XXXXXXX,XXXXXXX,                BL_BRTG,BL_BRTG,                        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,RGB_HUD,RGB_SAD,RGB_HUI),
 };
+
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -112,6 +150,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
                 return false;
             case S_ZELDA:
+                if (record->event.pressed) {
+                    stop_all_notes();
+                    PLAY_SONG(song_zelda_puzzle);
+                }
+                return false;
+            case S_IMPER:
                 if (record->event.pressed) {
                     stop_all_notes();
                     PLAY_SONG(song_zelda_puzzle);
