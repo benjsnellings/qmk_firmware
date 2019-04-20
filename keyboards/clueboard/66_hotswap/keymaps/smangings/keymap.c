@@ -23,6 +23,7 @@ enum {
   TD_SHIFT = 0
 };
 
+//Audio Declarations
 enum custom_keycodes {
     S_BSKTC = SAFE_RANGE,
     S_ODEJY,
@@ -33,32 +34,27 @@ enum custom_keycodes {
     S_COIN,
     S_SONIC,
     S_ZELDA,
-    S_IMPER
+    S_IMPER,
+    S_RROLL,
+    S_ZELDT
 };
 
 #ifdef AUDIO_ENABLE
   float song_basketcase[][2] = SONG(BASKET_CASE);
-  float song_ode_to_joy[][2]  = SONG(ODE_TO_JOY);
-  float song_rock_a_bye_baby[][2]  = SONG(ROCK_A_BYE_BABY);
-  float song_doe_a_deer[][2]  = SONG(DOE_A_DEER);
-  float song_scale[][2]  = SONG(MUSIC_SCALE_SOUND);
-  float song_coin[][2]  = SONG(COIN_SOUND);
-  float song_one_up[][2]  = SONG(ONE_UP_SOUND);
-  float song_sonic_ring[][2]  = SONG(SONIC_RING);
-  float song_zelda_puzzle[][2]  = SONG(ZELDA_PUZZLE);
-  float song_imperial_march[][2]  = SONG(IMPERIAL_MARCH);
+  float song_ode_to_joy[][2] = SONG(ODE_TO_JOY);
+  float song_rock_a_bye_baby[][2] = SONG(ROCK_A_BYE_BABY);
+  float song_doe_a_deer[][2] = SONG(DOE_A_DEER);
+  float song_scale[][2] = SONG(MUSIC_SCALE_SOUND);
+  float song_coin[][2] = SONG(COIN_SOUND);
+  float song_one_up[][2] = SONG(ONE_UP_SOUND);
+  float song_sonic_ring[][2] = SONG(SONIC_RING);
+  float song_zelda_puzzle[][2] = SONG(ZELDA_PUZZLE);
+  float song_imperial_march[][2] = SONG(IMPERIAL_MARCH);
+  float song_rick_roll[][2] = SONG(RICK_ROLL);
+  float song_zelda_treasure[][2] = SONG(ZELDA_TREASURE);
 #endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  /* Keymap _BL: Base Layer Linux
-   */
-[_BL] = LAYOUT(
-  KC_GESC,KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINS,KC_EQL,      KC_BSPC,           KC_LSCR, \
-  KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,KC_RBRC,KC_BSLS,                KC_DEL,  \
-  MO(_FL),KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,      KC_ENT,                            \
-  KC_LSFT,        KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,      TD(TD_SHIFT),       KC_UP,         \
-  KC_LCTL,KC_LGUI,KC_LALT,             LM(_I3, i3_mod),KC_SPC,                    KC_RGUI,KC_RALT,MO(_FL),KC_RCTL,KC_LEFT,KC_DOWN,KC_RGHT),
-
   /* Keymap _BL: Base Layer Mac
    */
 [_BM] = LAYOUT(
@@ -68,6 +64,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LSFT,        KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,      TD(TD_SHIFT),        KC_UP,        \
   KC_LCTL,KC_LGUI,KC_LALT,               LGUI_T(KC_SPC),RCTL_T(KC_SPC),            KC_RGUI,KC_RALT,MO(_FL),KC_RCTL,KC_LEFT,KC_DOWN,KC_RGHT),
 
+  /* Keymap _BL: Base Layer Linux
+   */
+[_BL] = LAYOUT(
+  KC_GESC,KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINS,KC_EQL,      KC_BSPC,           KC_LSCR, \
+  KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,KC_RBRC,KC_BSLS,                KC_DEL,  \
+  MO(_FL),KC_A,   KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,      KC_ENT,                            \
+  KC_LSFT,        KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,      TD(TD_SHIFT),       KC_UP,         \
+  KC_LCTL,KC_LGUI,KC_LALT,             LM(_I3, i3_mod),KC_SPC,                    KC_RGUI,KC_RALT,MO(_FL),KC_RCTL,KC_LEFT,KC_DOWN,KC_RGHT),
+
   /* Keymap _FL: Function Layer
    */
 [_FL] = LAYOUT(
@@ -75,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,KC_MPRV,KC_MPLY,KC_MNXT,_______,_______,_______,_______,_______,_______,MO(_CL),_______,_______,_______,                KC_PGDN, \
   MO(_FL),_______,KC_VOLD,KC_VOLU,KC_MUTE,_______,KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,_______,    _______,                             \
   _______,        _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,        KC_HOME,         \
-  _______,_______,_______,                _______,_______,                        _______,_______,MO(_FL),_______,_______,KC_END ,_______),
+  _______,_______,_______,                _______,_______,                        _______,_______,MO(_FL),_______,_______,KC_END ,KC_INS),
 
   /* Keymap _CL: Control layer
    */
@@ -86,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,        _______,_______,_______,_______,_______,_______,TG(_ML),_______,_______,_______,        _______,        _______,        \
   _______,_______,_______,                _______,_______,                        _______,_______,MO(_FL),_______,_______,_______,_______),
 
-  /* Keymap _I3:  i3 command layer
+  /* Keymap _I3: i3 command layer
    */
 [_I3] = LAYOUT(
   _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,   _______,             _______, \
@@ -98,13 +103,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap _ML: Music layer
    */
 [_ML] = LAYOUT(
-  XXXXXXX,S_BSKTC,S_ODEJY,S_RCKBY,S_DOEDR,S_SCALE,S_ONEUP, S_COIN,S_SONIC,S_ZELDA,S_IMPER,XXXXXXX,XXXXXXX,   XXXXXXX,             XXXXXXX, \
+  XXXXXXX,S_BSKTC,S_ODEJY,S_RCKBY,S_DOEDR,S_SCALE,S_ONEUP, S_COIN,S_SONIC,S_ZELDA,S_ZELDT,S_IMPER,XXXXXXX,   XXXXXXX,             XXXXXXX, \
   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                XXXXXXX, \
-  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,    XXXXXXX,                             \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,    S_RROLL,                             \
   XXXXXXX,        XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,        XXXXXXX,          CK_UP,         \
   TG(_ML),XXXXXXX,XXXXXXX,                XXXXXXX,XXXXXXX,                        XXXXXXX,XXXXXXX,XXXXXXX,CK_RST ,CK_OFF ,CK_DOWN,CK_ON),
 
-  /* Keymap _LD:  LED control layer
+  /* Keymap _LD: LED control layer
    */
 [_LD] = LAYOUT(
   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   BL_TOGG,             BL_INC, \
@@ -118,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void shift_caps_down (qk_tap_dance_state_t *state, void *user_data) {
   if (state->count >= 3) {
     register_code(KC_CAPS);
-    wait_ms(100);
+    wait_ms(100); // On Mac caps lock must be pressed for an extended time to register
   } else {
     register_code(KC_RSFT);
   }
@@ -133,7 +138,7 @@ void shift_caps_up (qk_tap_dance_state_t *state, void *user_data) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  //Tap once for Right Shift, twice for Caps Lock
+  //Tap once for Right Shift, thrice for Caps Lock
   [TD_SHIFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, shift_caps_down, shift_caps_up)
 };
 
@@ -198,6 +203,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (record->event.pressed) {
                     stop_all_notes();
                     PLAY_SONG(song_imperial_march);
+                }
+                return false;
+            case S_RROLL:
+                if (record->event.pressed) {
+                    stop_all_notes();
+                    PLAY_SONG(song_rick_roll);
+                }
+                return false;
+            case S_ZELDT:
+                if (record->event.pressed) {
+                    stop_all_notes();
+                    PLAY_SONG(song_zelda_treasure);
                 }
                 return false;
         #endif
