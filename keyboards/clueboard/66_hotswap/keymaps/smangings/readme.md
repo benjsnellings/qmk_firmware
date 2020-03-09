@@ -11,3 +11,9 @@ This layout was made specifcally to add some power user features, and a few bell
 
 
 
+## How to flash
+
+make clueboard/66_hotswap/gen1:smangings
+
+dfu-util -a 0 -d 0482:df11 -s 0x8000000:leave -D /Users/benjaminsnellings/Documents/Workplace/QMK/qmk_firmware/clueboard_66_hotswap_gen1_smangings.bin
+
