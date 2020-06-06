@@ -73,3 +73,7 @@ __pycache__
 
 # prerequisites for updating ChibiOS
 /util/fmpp*
+
+# ignore secret files
+secrets.c
+secrets.h

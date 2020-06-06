@@ -11,8 +11,6 @@
 #define _ML 8
 #define _LD 9
 
-#define i3_mod KC_LGUI
-
 void matrix_init_user(void) { // Runs boot tasks for keyboard
   clicky_off();
 };
@@ -41,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,KC_MPRV,KC_MPLY,KC_MNXT,_______,_______,_______,TD(SCL),TD(SCR),_______,MO(_CL),_______,_______,_______,                KC_PGDN, \
   MO(_FL),_______,KC_VOLD,KC_VOLU,KC_MUTE,_______,KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,KC_MINS,_______,    _______,                             \
   _______,        _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,        KC_HOME,         \
-  _______,_______,_______,                _______,_______,                        _______,_______,MO(_FL),_______,_______,KC_END ,KC_INS),
+  KC_SCT1,KC_SCT2,_______,                _______,_______,                        _______,_______,MO(_FL),_______,_______,KC_END ,KC_INS),
 
   /* Keymap _CL: Control layer
    */
@@ -78,3 +76,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [SCL] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, space_cadet_left, space_cadet_left_reset),
   [SCR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, space_cadet_right, space_cadet_right_reset)
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  return process_record_music(keycode, record) && process_record_secrets(keycode, record);
+}
