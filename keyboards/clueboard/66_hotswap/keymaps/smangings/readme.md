@@ -9,7 +9,9 @@
 
 This layout was made specifcally to add some power user features, and a few bells and whistles just for fun.
 
+# Way to visualize
 
+http://ciantic.github.io/keymapceditor/#||
 
 ## How to flash
 
