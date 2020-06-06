@@ -21,7 +21,6 @@ void space_cadet_right_reset (qk_tap_dance_state_t *state, void *user_data);
 
 // Make Songs playable
 // enum custom_keycodes;
-
 enum custom_keycodes {
     S_BSKTC = SAFE_RANGE,
     S_ODEJY,
@@ -34,7 +33,12 @@ enum custom_keycodes {
     S_ZELDA,
     S_IMPER,
     S_RROLL,
-    S_ZELDT
+    S_ZELDT,
+
+    // Custom Secret Keycodes
+    KC_SCT1,
+    KC_SCT2
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record);
+bool process_record_music(uint16_t keycode, keyrecord_t *record);
+bool process_record_secrets(uint16_t keycode, keyrecord_t *record);

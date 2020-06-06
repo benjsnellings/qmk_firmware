@@ -34,7 +34,6 @@ bool led_matrix_custom() {
 }
 */
 
-
 // ===============================================
 // Space Cadet Funtions
 // ===============================================
@@ -108,7 +107,7 @@ void space_cadet_right_reset (qk_tap_dance_state_t *state, void *user_data) {
   float song_zelda_treasure[][2] = SONG(ZELDA_TREASURE);
 #endif
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_music(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         #ifdef AUDIO_ENABLE
             case S_BSKTC:
@@ -186,4 +185,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #endif
     }
     return true;
+}
+
+// ===============================================
+// Setup Secret Keycodes
+// ===============================================
+__attribute__ ((weak))
+bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
+  return true;
 }
