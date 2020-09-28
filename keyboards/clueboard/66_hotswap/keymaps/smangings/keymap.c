@@ -11,7 +11,8 @@
 #define _ML 8
 #define _LD 9
 
-void matrix_init_user(void) { // Runs boot tasks for keyboard
+// Runs boot tasks for keyboard
+void matrix_init_user(void) {
   clicky_off();
 };
 
@@ -78,5 +79,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
   return process_record_music(keycode, record) && process_record_secrets(keycode, record);
 }

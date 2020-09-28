@@ -13,6 +13,9 @@ This layout was made specifcally to add some power user features, and a few bell
 
 http://ciantic.github.io/keymapceditor/#||
 
+
+[visualize whatever is checked in](ciantic.github.io/keymapceditor/#clueboard/66_hotswap||https%3A%2F%2Fraw.githubusercontent.com%2Fbenjsnellings%2Fqmk_firmware%2Fsmangings%2Fkeyboards%2Fclueboard%2F66_hotswap%2Fkeymaps%2Fsmangings%2Fkeymap.c)
+
 ## How to flash
 
 make clueboard/66_hotswap/gen1:smangings
