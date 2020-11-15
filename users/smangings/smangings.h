@@ -3,7 +3,7 @@
 #include "quantum.h"
 
 // Custom Keycodes
-enum custom_keycodes {
+enum personal_custom_keycodes {
     // Music Keycodes
     S_BSKTC = SAFE_RANGE,
     S_ODEJY,
