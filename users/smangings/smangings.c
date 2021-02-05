@@ -1,5 +1,6 @@
 #include "smangings.h"
 // #include "personal_song_list.h"
+#include "user_song_list.h"
 
 // ===============================================
 // CAPS LOCK Tap-Dance Functions

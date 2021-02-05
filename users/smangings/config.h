@@ -1,5 +1,7 @@
 #pragma once
 
+// #include "smangings.h"
+
 #ifdef AUDIO_ENABLE
 	#define STARTUP_SONG SONG(ZELDA_TREASURE)
 	#define AUDIO_CLICKY
